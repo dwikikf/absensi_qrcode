@@ -23,13 +23,15 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each siswas as { nis, nama }, index}
+			{#each siswas as { _id, nis, nama }, index}
 				<tr>
 					<td class="border border-gray-300 text-center">{index + 1}</td>
 					<td class="border border-gray-300 text-center">{nis}</td>
 					<td class="border border-gray-300">{nama}</td>
 					<td class="flex items-center justify-evenly gap-1 border border-gray-300">
-						<EyeIcon class="text-primary" />
+						<a href="/siswa/{_id}">
+							<EyeIcon class="text-primary" />
+						</a>
 						<EditIcon />
 						<a href="delete">
 							<XCircleIcon class="text-danger" />

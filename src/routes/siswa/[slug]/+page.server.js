@@ -1,10 +1,12 @@
 import { siswas } from '$lib/server/siswas';
+import { BSON } from 'mongodb';
 
-export async function load() {
+export async function load({ params }) {
+	const id = new BSON.ObjectId(params.slug);
+
 	try {
-		const data = await siswas.find().toArray();
+		const data = await siswas.find({ _id: id }).toArray();
 
-		// **THE FIX:** Convert _id to string
 		const serializedData = data.map(({ _id, nis, nama }) => {
 			return {
 				nis,
