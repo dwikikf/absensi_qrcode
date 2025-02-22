@@ -3,6 +3,16 @@ import { error } from '@sveltejs/kit';
 
 export const siswas = db.collection('siswas');
 
+const options = {
+	projection: { _id: 0, nama: 1, nis: 1 }
+};
+
+export function getSiswas() {
+	const datas = siswas.find({}, options).toArray;
+	console.log(datas);
+	return datas;
+}
+
 export async function getAllSiswa() {
 	const data = await siswas.find().toArray();
 

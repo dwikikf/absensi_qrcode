@@ -2,6 +2,7 @@ import { create, getAllSiswa } from '$lib/server/siswas';
 
 export async function load() {
 	const data = await getAllSiswa();
+	console.table(data.data);
 	return { data: data.data };
 }
 
