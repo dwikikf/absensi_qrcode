@@ -1,4 +1,4 @@
-import { start_mongo } from '$lib/server/db';
+import { start_mongo } from '$lib/server/database';
 
 start_mongo()
 	.then(() => {

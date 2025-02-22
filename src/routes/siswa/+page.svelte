@@ -1,17 +1,37 @@
 <script>
 	// import feather icon
 	import { EyeIcon, EditIcon, XCircleIcon } from 'svelte-feather-icons';
-	//
 
 	let data = $props();
-
-	const siswas = data.data.data;
 </script>
 
 <section class="w-full">
 	<div class="my-2 flex justify-between">
 		<h2 class="text-2xl font-black">Data Siswa</h2>
-		<button class="bg-primary rounded-2xl px-4 py-2 text-white">Tambah Data Siswa</button>
+
+		<form method="POST" action="?/create">
+			<label>
+				Nis :
+				<input
+					name="nis"
+					autocomplete="off"
+					class="rounded-2xl border-2 bg-gray-200 px-3"
+					required
+				/>
+			</label>
+			<label>
+				Nama :
+				<input
+					name="nama"
+					autocomplete="off"
+					class=" rounded-2xl border-2 bg-gray-200 px-3"
+					required
+				/>
+			</label>
+			<button type="submit" class="bg-primary cursor-pointer rounded-2xl px-4 py-2 text-white">
+				Tambah Data Siswa
+			</button>
+		</form>
 	</div>
 	<table class="w-full table-auto border-separate border border-gray-400">
 		<thead>
@@ -23,7 +43,13 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each siswas as { _id, nis, nama }, index}
+			{#if data.data.data.length === 0}
+				<tr>
+					<td colspan="4" class="text-center">Data tidak ditemukan</td>
+				</tr>
+			{/if}
+
+			{#each data.data.data as { _id, nis, nama }, index}
 				<tr>
 					<td class="border border-gray-300 text-center">{index + 1}</td>
 					<td class="border border-gray-300 text-center">{nis}</td>
@@ -33,9 +59,9 @@
 							<EyeIcon class="text-primary" />
 						</a>
 						<EditIcon />
-						<a href="delete">
+						<button>
 							<XCircleIcon class="text-danger" />
-						</a>
+						</button>
 					</td>
 				</tr>
 			{/each}
