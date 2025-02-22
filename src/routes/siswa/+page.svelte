@@ -3,7 +3,9 @@
 	import { EyeIcon, EditIcon, XCircleIcon } from 'svelte-feather-icons';
 	//
 
-	let { data } = $props();
+	let data = $props();
+
+	const siswas = data.data.data;
 </script>
 
 <section class="w-full">
@@ -21,15 +23,13 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each data.summaries as { index, nis, nama }}
+			{#each siswas as { nis, nama }, index}
 				<tr>
 					<td class="border border-gray-300 text-center">{index + 1}</td>
 					<td class="border border-gray-300 text-center">{nis}</td>
 					<td class="border border-gray-300">{nama}</td>
 					<td class="flex items-center justify-evenly gap-1 border border-gray-300">
-						<button class="cursor-pointer">
-							<EyeIcon class="text-primary" />
-						</button>
+						<EyeIcon class="text-primary" />
 						<EditIcon />
 						<a href="delete">
 							<XCircleIcon class="text-danger" />
