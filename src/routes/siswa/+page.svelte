@@ -5,6 +5,8 @@
 	import { EyeIcon, EditIcon, XCircleIcon } from 'svelte-feather-icons';
 
 	export let data;
+
+	// console.log(data.siswas);
 </script>
 
 <section class="w-full">
@@ -15,7 +17,9 @@
 			<label>
 				Nis :
 				<input
+					type="text"
 					name="nis"
+					id="nis"
 					autocomplete="off"
 					class="rounded-2xl border-2 bg-gray-200 px-3"
 					required
@@ -24,7 +28,9 @@
 			<label>
 				Nama :
 				<input
+					type="text"
 					name="nama"
+					id="nama"
 					autocomplete="off"
 					class=" rounded-2xl border-2 bg-gray-200 px-3"
 					required
@@ -45,28 +51,28 @@
 			</tr>
 		</thead>
 		<tbody>
-			<!-- {#if data.data.data.length === 0}
+			{#if data.siswas.length === 0}
 				<tr>
 					<td colspan="4" class="text-center">Data tidak ditemukan</td>
 				</tr>
+			{:else}
+				{#each data.siswas as siswa, i}
+					<tr>
+						<td class="border border-gray-300 text-center">{i + 1}</td>
+						<td class="border border-gray-300 text-center">{siswa.nis}</td>
+						<td class="border border-gray-300">{siswa.nama}</td>
+						<td class="flex items-center justify-evenly gap-1 border border-gray-300">
+							<a href="/siswa/{siswa.nis}}">
+								<EyeIcon class="text-primary" />
+							</a>
+							<EditIcon />
+							<button>
+								<XCircleIcon class="text-danger" />
+							</button>
+						</td>
+					</tr>
+				{/each}
 			{/if}
-	-->
-			{#each data.siswas as siswa, i}
-				<tr>
-					<td class="border border-gray-300 text-center">{i + 1}</td>
-					<td class="border border-gray-300 text-center">{siswa.nis}</td>
-					<td class="border border-gray-300">{siswa.nama}</td>
-					<td class="flex items-center justify-evenly gap-1 border border-gray-300">
-						<a href="/siswa/{siswa.nis}}">
-							<EyeIcon class="text-primary" />
-						</a>
-						<EditIcon />
-						<button>
-							<XCircleIcon class="text-danger" />
-						</button>
-					</td>
-				</tr>
-			{/each}
 		</tbody>
 	</table>
 </section>

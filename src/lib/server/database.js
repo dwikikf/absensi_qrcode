@@ -1,11 +1,22 @@
+// @ts-nocheck
+import { MONGODB_URI } from '$env/static/private';
 import mongoose from 'mongoose';
 
+let cached = null;
+
 const connectDB = async () => {
+	if (cached) {
+		return cached;
+	}
+
 	try {
-		await mongoose.connect('mongodb://127.0.0.1:27017/alhikmah');
-		console.log('MongoDB terhubung....');
-	} catch (e) {
-		console.error('Kesalahan koneksi MongoDB:', e);
+		cached = await mongoose.connect(MONGODB_URI);
+		console.log('Terhubung ke MongoDB');
+		return cached;
+	} catch (error) {
+		console.error('Gagal terhubung ke MongoDB:', error);
+		cached = null; // Reset cached jika koneksi gagal
+		throw error;
 	}
 };
 

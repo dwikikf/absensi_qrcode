@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const siswaSchema = new mongoose.Schema({
 	nis: String,
-	name: String
+	nama: String
 });
 
 export const Siswa = mongoose.models.Siswa || mongoose.model('Siswa', siswaSchema);
