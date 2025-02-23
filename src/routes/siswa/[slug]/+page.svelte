@@ -1,8 +1,8 @@
 <script>
-	let { data } = $props();
+	// @ts-nocheck
 
-	const siswa = data.data[0];
+	export let data;
 </script>
 
-<p>Nis : {siswa.nis}</p>
-<p>Nama : {siswa.nama}</p>
+<p>Nis : {data.siswa.nis}</p>
+<p>Nama :{data.siswa.nama}</p>

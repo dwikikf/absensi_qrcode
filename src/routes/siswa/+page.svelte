@@ -62,7 +62,7 @@
 						<td class="border border-gray-300 text-center">{siswa.nis}</td>
 						<td class="border border-gray-300">{siswa.nama}</td>
 						<td class="flex items-center justify-evenly gap-1 border border-gray-300">
-							<a href="/siswa/{siswa.nis}}">
+							<a href="/siswa/{siswa.nis}">
 								<EyeIcon class="text-primary" />
 							</a>
 							<EditIcon />
