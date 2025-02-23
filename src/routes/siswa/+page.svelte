@@ -1,8 +1,10 @@
 <script>
+	// @ts-nocheck
+
 	// import feather icon
 	import { EyeIcon, EditIcon, XCircleIcon } from 'svelte-feather-icons';
 
-	let data = $props();
+	export let data;
 </script>
 
 <section class="w-full">
@@ -43,19 +45,19 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#if data.data.data.length === 0}
+			<!-- {#if data.data.data.length === 0}
 				<tr>
 					<td colspan="4" class="text-center">Data tidak ditemukan</td>
 				</tr>
 			{/if}
-
-			{#each data.data.data as { _id, nis, nama }, index}
+	-->
+			{#each data.siswas as siswa, i}
 				<tr>
-					<td class="border border-gray-300 text-center">{index + 1}</td>
-					<td class="border border-gray-300 text-center">{nis}</td>
-					<td class="border border-gray-300">{nama}</td>
+					<td class="border border-gray-300 text-center">{i + 1}</td>
+					<td class="border border-gray-300 text-center">{siswa.nis}</td>
+					<td class="border border-gray-300">{siswa.nama}</td>
 					<td class="flex items-center justify-evenly gap-1 border border-gray-300">
-						<a href="/siswa/{_id}">
+						<a href="/siswa/{siswa.nis}}">
 							<EyeIcon class="text-primary" />
 						</a>
 						<EditIcon />

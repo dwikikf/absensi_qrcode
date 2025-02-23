@@ -35,6 +35,8 @@
 		"vite": "^6.0.0"
 	},
 	"dependencies": {
-		"mongodb": "^6.13.1"
+		"dotenv": "^16.4.7",
+		"mongodb": "^6.13.1",
+		"mongoose": "^8.10.1"
 	}
 }

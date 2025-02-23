@@ -1,15 +1,7 @@
-import { create, getAllSiswa } from '$lib/server/siswas';
+import { getSiswa } from '$lib/server/models/Siswa';
 
 export async function load() {
-	const data = await getAllSiswa();
-	console.table(data.data);
-	return { data: data.data };
+	return {
+		siswas: await getSiswa()
+	};
 }
-
-export const actions = {
-	create: async ({ request }) => {
-		const data = await request.formData();
-		// @ts-ignore
-		create(data.get('nis'), data.get('nama'));
-	}
-};

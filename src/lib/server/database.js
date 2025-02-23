@@ -1,11 +1,12 @@
-import { MongoClient } from 'mongodb';
-import { MONGO_URL } from '$env/static/private';
+import mongoose from 'mongoose';
 
-const client = new MongoClient(MONGO_URL);
+const connectDB = async () => {
+	try {
+		await mongoose.connect('mongodb://127.0.0.1:27017/alhikmah');
+		console.log('MongoDB terhubung....');
+	} catch (e) {
+		console.error('Kesalahan koneksi MongoDB:', e);
+	}
+};
 
-export function start_mongo() {
-	console.log('Mongo starting...');
-	return client.connect();
-}
-
-export default client.db();
+export default connectDB;
