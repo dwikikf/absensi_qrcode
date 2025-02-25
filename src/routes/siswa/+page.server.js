@@ -1,4 +1,6 @@
-import { deleteOne, getSiswa, Siswa } from '$lib/server/models/Siswa';
+// @ts-nocheck
+import { createSiswa, deleteOne, getSiswa } from '$lib/server/models/Siswa';
+import { fail } from '@sveltejs/kit';
 
 export async function load() {
 	try {
@@ -17,30 +19,25 @@ export const actions = {
 		const nama = data.get('nama');
 
 		try {
-			const siswaBaru = new Siswa({
-				nis,
-				nama
-			});
-
-			await siswaBaru.save();
+			await createSiswa(nis, nama);
 
 			return {
 				success: true,
 				message: 'Data siswa berhasil ditambahkan.'
 			};
 		} catch (error) {
-			console.error('Error menambah data siswa:', error);
-			return {
-				success: false,
-				message: 'Terjadi kesalahan saat menambahkan data siswa.'
-			};
+			return fail(422, {
+				nis: nis,
+				nama: nama,
+				error: error.message
+			});
 		}
 	},
+
 	delete: async ({ request }) => {
 		const nis = (await request.formData()).get('nis');
 
 		try {
-			// @ts-ignore
 			await deleteOne(nis);
 			return {
 				success: true,

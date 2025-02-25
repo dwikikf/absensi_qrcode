@@ -3,15 +3,32 @@
 
 	// import feather icon
 	import { EyeIcon, EditIcon, XCircleIcon } from 'svelte-feather-icons';
+	import { preventDefault } from 'svelte/legacy';
 
-	export let data;
+	let { data, form } = $props();
 
-	// console.log(data.siswas);
+	function handleDelete(event) {
+		const konfirmasi = confirm('Apakah anda Yakin Akan Menghapus data ini ?');
+
+		if (!konfirmasi) {
+			event.preventDefault();
+		}
+	}
 </script>
+
+{#if form?.success}
+	<p>
+		{form?.message}
+	</p>
+{/if}
 
 <section class="w-full">
 	<div class="my-2 flex justify-between">
 		<h2 class="text-2xl font-black">Data Siswa</h2>
+
+		{#if form?.error}
+			<p>{form?.error}</p>
+		{/if}
 
 		<form method="POST" action="?/create">
 			<label>
@@ -20,9 +37,9 @@
 					type="text"
 					name="nis"
 					id="nis"
+					value={form?.nis ?? ''}
 					autocomplete="off"
 					class="rounded-2xl border-2 bg-gray-200 px-3"
-					required
 				/>
 			</label>
 			<label>
@@ -31,9 +48,9 @@
 					type="text"
 					name="nama"
 					id="nama"
+					value={form?.nama ?? ''}
 					autocomplete="off"
 					class=" rounded-2xl border-2 bg-gray-200 px-3"
-					required
 				/>
 			</label>
 			<button type="submit" class="bg-primary cursor-pointer rounded-2xl px-4 py-2 text-white">
@@ -68,7 +85,7 @@
 							<EditIcon />
 							<form action="?/delete" method="post">
 								<input type="hidden" name="nis" value={siswa.nis} />
-								<button class="cursor-pointer">
+								<button class="cursor-pointer" onclick={handleDelete}>
 									<XCircleIcon class="text-danger" />
 								</button>
 							</form>
