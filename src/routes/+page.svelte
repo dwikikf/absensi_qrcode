@@ -1,1 +1,5 @@
-<p>this is home</p>
+<script>
+	import CamScanner from './camScanner.svelte';
+</script>
+
+<CamScanner />
