@@ -66,9 +66,12 @@
 								<EyeIcon class="text-primary" />
 							</a>
 							<EditIcon />
-							<button>
-								<XCircleIcon class="text-danger" />
-							</button>
+							<form action="?/delete" method="post">
+								<input type="hidden" name="nis" value={siswa.nis} />
+								<button class="cursor-pointer">
+									<XCircleIcon class="text-danger" />
+								</button>
+							</form>
 						</td>
 					</tr>
 				{/each}

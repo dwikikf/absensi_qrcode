@@ -17,3 +17,10 @@ export function getSiswa() {
 export function getOnesiswa(nis) {
 	return Siswa.findOne({ nis: nis }, { _id: 0 }).lean();
 }
+
+/**
+ * @param {string} nis
+ */
+export function deleteOne(nis) {
+	return Siswa.deleteOne({ nis: nis });
+}
