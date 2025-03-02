@@ -1,5 +1,5 @@
 import { getOnesiswa, updateSiswa } from '$lib/server/models/Siswa.js';
-import { error, fail, redirect } from '@sveltejs/kit';
+import { error, fail } from '@sveltejs/kit';
 
 export async function load({ params }) {
 	const siswa = await getOnesiswa(params.slug);
@@ -22,7 +22,7 @@ export const actions = {
 			// @ts-ignore
 			await updateSiswa(id, nis, nama);
 
-			// throw redirect(303, '/siswa');
+			return { type: 'redirect', status: 303, location: '/siswa' };
 		} catch (error) {
 			return fail(422, {
 				nis: nis,
