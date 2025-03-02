@@ -53,6 +53,31 @@ export async function createSiswa(nis, nama) {
 }
 
 /**
+ * @param {string} id
+ * @param {string} nis
+ * @param {string} nama
+ */
+export async function updateSiswa(id, nis, nama) {
+	if (nis === '') {
+		throw new Error('Kolom nis siswa harus diisi.');
+	}
+
+	if (nama === '') {
+		throw new Error('Kolom nama siswa harus diisi.');
+	}
+
+	if (id !== nis) {
+		const siswa = await Siswa.findOne({ nis });
+
+		if (siswa) {
+			throw new Error('Nis Sudah Terdaftar.');
+		}
+	}
+
+	await Siswa.updateOne({ nis: id }, { $set: { nis: nis, nama: nama } });
+}
+
+/**
  * @param {string} nis
  */
 export function deleteOne(nis) {

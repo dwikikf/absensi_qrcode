@@ -53,6 +53,7 @@
 				<label>
 					Nis :
 					<input
+						required
 						type="text"
 						name="nis"
 						id="nis"
@@ -64,6 +65,7 @@
 				<label>
 					Nama :
 					<input
+						required
 						type="text"
 						name="nama"
 						id="nama"
@@ -105,7 +107,9 @@
 							<a href="/siswa/{siswa.nis}">
 								<EyeIcon class="text-primary" />
 							</a>
-							<EditIcon />
+							<a href="/siswa/{siswa.nis}/edit">
+								<EditIcon />
+							</a>
 							<form action="?/delete" method="post">
 								<input type="hidden" name="nis" value={siswa.nis} />
 								<button class="cursor-pointer" onclick={handleDelete}>
